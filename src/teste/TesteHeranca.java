@@ -7,7 +7,10 @@ package teste;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import modelo.Aluno;
+import modelo.AlunoConvenio;
 import modelo.AvaliacaoFisica;
+import modelo.Convenio;
+import modelo.Pessoa;
 import modelo.Plano;
 import modelo.Professor;
 
@@ -21,7 +24,10 @@ public class TesteHeranca {
         
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
-        Plano p1 = new Plano("Premium", "Acesso total", 150.00);
+        Plano p1 = new Plano("Premium", "Acesso total", 100.00);
+        Convenio c1 = new Convenio();
+        c1.setNome("IFSUL");
+        c1.setDesconto(5);
         
         // Com direito a desconto:
         Aluno a1 = new Aluno();
@@ -33,8 +39,8 @@ public class TesteHeranca {
         System.out.println("");
         
         // Sem direito a desconto:
-        Aluno a2 = new Aluno();
-        a2.setDataMatricula(LocalDate.parse("07/05/2025", formato));
+        AlunoConvenio a2 = new AlunoConvenio(c1);
+        a2.setDataMatricula(LocalDate.parse("10/04/2024", formato));
         a2.setPlano(p1);
         a2.verificaDesconto();
         System.out.println(a2.exibirDados());

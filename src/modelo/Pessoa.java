@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author 20241PF.CC0020
  */
-public class Pessoa {
+public abstract class Pessoa {
         //Atributos
     private LocalDate dataNascimento;
     private String nome;

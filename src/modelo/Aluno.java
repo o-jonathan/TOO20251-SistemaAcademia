@@ -6,6 +6,7 @@ package modelo;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +15,11 @@ import java.util.List;
  * @author 20241PF.CC0020
  */
 public class Aluno extends Pessoa {
-    private String matricula;
-    private LocalDate dataMatricula;
-    private Plano plano;
-    private double valorMensalidade;
-    private List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
+    protected String matricula;
+    protected LocalDate dataMatricula;
+    protected Plano plano;
+    protected double valorMensalidade;
+    protected List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
     
     public String mostrarAvaliacoes() {
         String aux = "Historico de Avaliacoes: \n";
@@ -51,23 +52,28 @@ public class Aluno extends Pessoa {
     }
     public void setPlano(Plano plano) {
         this.plano = plano;
-        if (Period.between(dataMatricula, LocalDate.now()).getMonths() > 3)
-            valorMensalidade = plano.getValor() - (plano.getValor() * 0.1);
-        else valorMensalidade = plano.getValor();
+        verificaDesconto();
     }
     public void verificaDesconto()
-    {
-        if (Period.between(dataMatricula, LocalDate.now()).getMonths() > 3)
-            valorMensalidade = plano.getValor() - (plano.getValor() * 0.1);
-        else valorMensalidade = plano.getValor();
+    {   
+        int tempo = (Period.between(dataMatricula, LocalDate.now()).getYears() * 12) + Period.between(dataMatricula, LocalDate.now()).getMonths();
+        if (plano != null) {
+            valorMensalidade = plano.getValor();
+            if (tempo > 3) {
+                valorMensalidade -= (valorMensalidade * 0.1);
+            }
+        }
     }
     
     @Override
     public String exibirDados() {
         String aux = super.exibirDados();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         aux += "\nMatricula: " + matricula;
+        aux += "\nData de Matricula: " + dataMatricula.format(formato);
         aux += "\nAvaliacoes Fisicas Realizadas: " + getAvaliacoes().size();
-        aux += "\nValor da Mensalidade: " + valorMensalidade;
+        if (plano != null)
+            aux += "\nValor da Mensalidade: R$" + valorMensalidade;
         return aux;
     }
 }

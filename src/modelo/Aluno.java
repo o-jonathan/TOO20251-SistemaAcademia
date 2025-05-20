@@ -72,8 +72,10 @@ public class Aluno extends Pessoa {
         aux += "\nMatricula: " + matricula;
         aux += "\nData de Matricula: " + dataMatricula.format(formato);
         aux += "\nAvaliacoes Fisicas Realizadas: " + getAvaliacoes().size();
-        if (plano != null)
-            aux += "\nValor da Mensalidade: R$" + valorMensalidade;
+        if (plano != null) {
+            aux += "\nValor da Mensalidade: " + valorMensalidade;
+            aux += "\nPlano: " + plano.getNome() + " - R$" + plano.getValor(); 
+        }
         return aux;
     }
 }

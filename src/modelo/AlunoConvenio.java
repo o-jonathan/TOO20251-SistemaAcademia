@@ -45,6 +45,12 @@ public class AlunoConvenio extends Aluno {
             }
         }
     }
-    
+
+    @Override
+    public String exibirDados() {
+        String aux = super.exibirDados();
+        aux += "\nConvenio: " + convenio.getNome() + " - " + convenio.getDesconto() + "%";
+        return aux;
+    }
     
 }

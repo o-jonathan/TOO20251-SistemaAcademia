@@ -31,6 +31,8 @@ public class TesteHeranca {
         
         // Com direito a desconto:
         Aluno a1 = new Aluno();
+        a1.setNome("Pedro");
+        a1.setMatricula("2024-1");
         a1.setDataMatricula(LocalDate.parse("02/01/2025", formato));
         a1.setPlano(p1);
         a1.verificaDesconto();
@@ -40,6 +42,8 @@ public class TesteHeranca {
         
         // Sem direito a desconto:
         AlunoConvenio a2 = new AlunoConvenio(c1);
+        a2.setNome("Maria");
+        a2.setMatricula("2023-2");
         a2.setDataMatricula(LocalDate.parse("10/04/2024", formato));
         a2.setPlano(p1);
         a2.verificaDesconto();

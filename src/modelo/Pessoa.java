@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author 20241PF.CC0020
  */
-public abstract class Pessoa {
+public abstract class Pessoa implements Exibivel {
         //Atributos
     private LocalDate dataNascimento;
     private String nome;
@@ -41,6 +41,8 @@ public abstract class Pessoa {
     public String toString() {
         return nome;
     }
+    
+    
     
         //Getters
     public String getNome() {

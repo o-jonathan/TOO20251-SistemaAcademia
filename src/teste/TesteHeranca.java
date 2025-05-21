@@ -10,6 +10,7 @@ import modelo.Aluno;
 import modelo.AlunoConvenio;
 import modelo.AvaliacaoFisica;
 import modelo.Convenio;
+import modelo.Impressora;
 import modelo.Pessoa;
 import modelo.Plano;
 import modelo.Professor;
@@ -28,17 +29,21 @@ public class TesteHeranca {
         Convenio c1 = new Convenio();
         c1.setNome("IFSUL");
         c1.setDesconto(5);
+        //System.out.println(p1.exibirDados());
+        
+        Professor p = new Professor();
+        p.setNome("Juka");
+        p.setEspecializacao("Musculacao");
         
         // Com direito a desconto:
         Aluno a1 = new Aluno();
         a1.setNome("Pedro");
         a1.setMatricula("2024-1");
+        a1.setDataNascimento(LocalDate.parse("10/02/2005", formato));
         a1.setDataMatricula(LocalDate.parse("02/01/2025", formato));
         a1.setPlano(p1);
         a1.verificaDesconto();
-        System.out.println(a1.exibirDados());
-        
-        System.out.println("");
+        //System.out.println(a1.exibirDados());
         
         // Sem direito a desconto:
         AlunoConvenio a2 = new AlunoConvenio(c1);
@@ -47,6 +52,16 @@ public class TesteHeranca {
         a2.setDataMatricula(LocalDate.parse("10/04/2024", formato));
         a2.setPlano(p1);
         a2.verificaDesconto();
-        System.out.println(a2.exibirDados());
+        //System.out.println(a2.exibirDados());
+        
+        AvaliacaoFisica av1 = new AvaliacaoFisica(a1);
+        a1.adicionarAvaliacao(av1);
+        av1.setProfessor(p);
+        
+        Impressora.imprimirDados(p);
+        Impressora.imprimirDados(p1);
+        Impressora.imprimirDados(av1);
+        Impressora.imprimirDados(a1);
+        Impressora.imprimirDados(a2);
     }
 }

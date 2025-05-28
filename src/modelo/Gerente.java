@@ -15,4 +15,9 @@ public class Gerente extends Funcionario {
         return salario * 1.5;
     }
     
+    @Override
+    public String mostrarVinculo() {
+        return "Gerente";
+    }
+    
 }

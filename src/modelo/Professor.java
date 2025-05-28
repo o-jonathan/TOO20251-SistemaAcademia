@@ -10,6 +10,11 @@ package modelo;
  */
 public class Professor extends Funcionario {
     private String especializacao;
+    private static int qnt;
+    
+    public Professor() {
+        qnt++;
+    }
 
     public String getEspecializacao() {
         return especializacao;
@@ -29,5 +34,14 @@ public class Professor extends Funcionario {
     @Override
     public double calculaSalarioMes() {
         return salario * 1.25;
+    }
+
+    @Override
+    public String mostrarVinculo() {
+        return "Professor";
+    }
+    
+    public static int mostraQuantidade() {
+        return qnt;
     }
 }

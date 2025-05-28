@@ -41,6 +41,7 @@ public abstract class Pessoa implements Exibivel {
     public String toString() {
         return nome;
     }
+    public abstract String mostrarVinculo();
     
     
     

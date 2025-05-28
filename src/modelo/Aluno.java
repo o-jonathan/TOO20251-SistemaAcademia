@@ -78,4 +78,9 @@ public class Aluno extends Pessoa {
         }
         return aux;
     }
+    
+    @Override
+    public String mostrarVinculo() {
+        return "Aluno";
+    }    
 }
